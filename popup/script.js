@@ -1,11 +1,13 @@
 let city = "";
 
+
 function developContainer(data) {
+    let con = document.getElementById('info-container');
+    con.innerHTML = '';
     let newPc = document.createElement("p");
     let newPf = document.createElement("p");
     newPc.innerHTML = "C&deg;/" + data.temp_c;
     newPf.innerHTML = "F&deg;/" + data.temp_f;
-    let con = document.getElementById('info-container');
     con.appendChild(newPc);
     con.appendChild(newPf);
 }
