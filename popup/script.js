@@ -39,4 +39,9 @@ async function fetchData() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('button').addEventListener('click', fetchData, false);
+}, false)
+
 fun();
+fetchData();
