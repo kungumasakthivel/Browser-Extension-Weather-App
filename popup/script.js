@@ -1,6 +1,3 @@
-let city = "";
-
-
 function developContainer(data) {
     let con = document.getElementById('info-container');
     con.innerHTML = '';
@@ -15,7 +12,7 @@ function developContainer(data) {
 async function fun() {
     let input = document.getElementById('input');
     input.value = 'loading...';
-    let res = await fetch('https://ipapi.co/json/', {"method": "GET"});
+    let res = await fetch('https://ipapi.co/json/', {method: "GET"});
     let json =await res.json();
     city = json.city;
     input.value = city;
@@ -23,15 +20,21 @@ async function fun() {
 }
 
 async function fetchData() {
-    if(city === '') return;
+    // if(city === '') return;
+    let inputEle = document.getElementById("input");
+    let location = inputEle.value;
+    console.log(location);
+    if(location === '') return;
     try{
-        let res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=7afae986719f43e0b91135851240406&q=${city}`,
+        let res = await fetch(
+            `https://api.weatherapi.com/v1/forecast.json?key=7afae986719f43e0b91135851240406&q=${location}`,
             {
-                "method": "GET"
+                mode: "no-cors",
+                method: "GET"
             }
         );
-
         let json = await res.json();
+        console.log(json);
         let data = json.current;
         developContainer(data);
 
@@ -46,4 +49,3 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false)
 
 fun();
-fetchData();
